@@ -1,18 +1,8 @@
 # RetailInsight
 
-> A web-based Business Intelligence and Decision Support System designed specifically for small retail businesses in emerging markets.
-
+A web-based Business Intelligence and Decision Support System designed specifically for small retail businesses in emerging markets.
 RetailInsight transforms raw sales transactions into meaningful business insights through an intuitive and easy-to-use dashboard. Unlike traditional Business Intelligence platforms that require technical expertise and enterprise-level resources, RetailInsight enables small retailers to make informed decisions using simple visual analytics, automated reports, and sales forecasting.
 
----
-
-## Overview
-
-Small retail businesses generate valuable transaction data every day, yet many owners lack affordable tools to transform this information into actionable insights. Existing Business Intelligence platforms such as Microsoft Power BI, Tableau, Looker, and Zoho Analytics are often too complex, expensive, and infrastructure-dependent for small businesses.
-
-RetailInsight addresses this gap by providing a lightweight, cloud-based analytics platform that delivers essential business intelligence without requiring technical knowledge.
-
----
 
 ## Key Features
 
