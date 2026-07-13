@@ -191,3 +191,7 @@ p { color: var(--text-muted); }
   .section { padding: var(--space-8) 0; }
   .container { padding: 0 var(--space-4); }
 }
+/* Add to global.css */
+.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: var(--radius-pill); overflow: hidden; }
+.lang-toggle button { padding: 6px 10px; font-size: 0.75rem; font-weight: 700; background: var(--surface); border: none; cursor: pointer; color: var(--text-muted); }
+.lang-toggle button.is-active { background: var(--forest-700); color: #fff; }
