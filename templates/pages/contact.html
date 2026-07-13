@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — RetailInsight</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+</head>
+<body>
+  {% include "includes/navbar.html" %}
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h1>Questions? We actually answer.</h1>
+        <p>Whether you're comparing plans or already stuck mid-setup, drop us a line — a real person replies, usually within a day.</p>
+
+        <div class="info-list">
+          <div class="info-item"><span class="info-icon">✉️</span><div><strong>Email</strong><p>hello@retailinsight.app</p></div></div>
+          <div class="info-item"><span class="info-icon">📞</span><div><strong>Phone</strong><p>+880 1000 000000</p></div></div>
+          <div class="info-item"><span class="info-icon">📍</span><div><strong>Office</strong><p>Dhaka, Bangladesh</p></div></div>
+        </div>
+
+        <div class="hours-card card">
+          <h4>Working hours</h4>
+          <div class="hours-row"><span>Sunday – Thursday</span><span>9:00 AM – 6:00 PM</span></div>
+          <div class="hours-row"><span>Friday – Saturday</span><span>Closed</span></div>
+        </div>
+      </div>
+
+      <form class="contact-form card reveal" data-contact-form>
+        <h3>Send us a message</h3>
+        <div class="form-row">
+          <label>Name
+            <input type="text" name="name" required placeholder="Your name">
+          </label>
+          <label>Email
+            <input type="email" name="email" required placeholder="you@yourshop.com">
+          </label>
+        </div>
+        <label>Message
+          <textarea name="message" rows="5" required placeholder="How can we help?"></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Send message</button>
+        <p class="form-status" data-form-status></p>
+      </form>
+    </div>
+  </section>
+
+  {% include "includes/footer.html" %}
+  <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dark-mode.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+</body>
+</html>
