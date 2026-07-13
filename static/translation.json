@@ -1,0 +1,12 @@
+{
+  "en": {
+    "nav_home": "Home", "nav_features": "Features", "nav_pricing": "Pricing",
+    "nav_insights": "Market Insights", "nav_about": "About", "nav_contact": "Contact",
+    "cta_start": "Start free — 14 days", "cta_login": "Log in"
+  },
+  "bn": {
+    "nav_home": "হোম", "nav_features": "ফিচার", "nav_pricing": "মূল্য",
+    "nav_insights": "মার্কেট ইনসাইট", "nav_about": "আমাদের সম্পর্কে", "nav_contact": "যোগাযোগ",
+    "cta_start": "বিনামূল্যে শুরু করুন — ১৪ দিন", "cta_login": "লগ ইন"
+  }
+}
