@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Insights — RetailInsight</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/market-insights.css') }}">
+</head>
+<body>
+  {% include "includes/navbar.html" %}
+
+  <section class="section text-center">
+    <div class="container reveal">
+      <span class="eyebrow">Domain research</span>
+      <h1>The retail market we're building for.</h1>
+      <p class="mi-sub">A structured look at the environment small and mid-sized retailers operate in today — the same research that shaped RetailInsight's roadmap.</p>
+    </div>
+  </section>
+
+  <!-- PESTLE -->
+  <section class="section-tight">
+    <div class="container">
+      <h2 class="block-title reveal">PESTLE Analysis</h2>
+      <div class="pestle-grid">
+        <div class="card pestle-card reveal"><span class="pestle-letter">P</span><h3>Political</h3><p>Import duties and shifting VAT policy on retail goods affect small shops' margins directly.</p></div>
+        <div class="card pestle-card reveal"><span class="pestle-letter">E</span><h3>Economic</h3><p>Inflation and currency volatility push owners toward tighter inventory and cash-flow control.</p></div>
+        <div class="card pestle-card reveal"><span class="pestle-letter">S</span><h3>Social</h3><p>Customers increasingly expect digital receipts, loyalty perks, and fast, informal service.</p></div>
+        <div class="card pestle-card reveal"><span class="pestle-letter">T</span><h3>Technological</h3><p>Smartphone-first retailers are adopting mobile POS and cloud dashboards over desktop software.</p></div>
+        <div class="card pestle-card reveal"><span class="pestle-letter">L</span><h3>Legal</h3><p>Data protection expectations are rising even for small businesses handling customer records.</p></div>
+        <div class="card pestle-card reveal"><span class="pestle-letter">E</span><h3>Environmental</h3><p>Demand-based ordering (via forecasting) reduces overstock waste and spoilage.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SWOT -->
+  <section class="section-tight swot-section">
+    <div class="container">
+      <h2 class="block-title reveal">SWOT Analysis</h2>
+      <div class="swot-grid">
+        <div class="swot-card swot-s reveal"><h3>Strengths</h3><ul><li>Plain-language UI for non-technical owners</li><li>Fast setup, no IT team required</li><li>Alerts reach owners via WhatsApp/SMS</li></ul></div>
+        <div class="swot-card swot-w reveal"><h3>Weaknesses</h3><ul><li>Requires consistent data entry to stay accurate</li><li>Forecast quality depends on sales history depth</li></ul></div>
+        <div class="swot-card swot-o reveal"><h3>Opportunities</h3><ul><li>Large underserved market of unbanked-adjacent SMEs</li><li>Expansion into supplier/inventory marketplace features</li></ul></div>
+        <div class="swot-card swot-t reveal"><h3>Threats</h3><ul><li>Larger POS vendors adding lightweight analytics</li><li>Price sensitivity among smallest shop owners</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4P -->
+  <section class="section-tight">
+    <div class="container">
+      <h2 class="block-title reveal">Marketing Mix (4P)</h2>
+      <div class="fourp-grid">
+        <div class="card fourp-card reveal"><h3>Product</h3><p>A retail intelligence dashboard: sales tracking, forecasting, and automated reporting in one login.</p></div>
+        <div class="card fourp-card reveal"><h3>Price</h3><p>Tiered monthly subscription (Starter / Professional / Business), priced below hiring part-time analytics help.</p></div>
+        <div class="card fourp-card reveal"><h3>Place</h3><p>Cloud-based, accessed via browser or mobile — no installation, works on shared shop devices.</p></div>
+        <div class="card fourp-card reveal"><h3>Promotion</h3><p>Word-of-mouth among retailer networks, local business associations, and free-trial-led signups.</p></div>
+      </div>
+    </div>
+  </section>
+
+  {% include "includes/footer.html" %}
+  <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dark-mode.js') }}"></script>
+</body>
+</html>
+
