@@ -1,0 +1,25 @@
+.mi-sub { max-width: 640px; margin: var(--space-4) auto 0; }
+.block-title { margin-bottom: var(--space-5); }
+
+.pestle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+.pestle-card { padding: var(--space-5); position: relative; }
+.pestle-letter { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--forest-700); color: #fff; font-family: var(--font-display); font-weight: 700; margin-bottom: 12px; }
+.pestle-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.pestle-card p { font-size: 0.88rem; }
+
+.swot-section { background: var(--surface-tint); border-radius: var(--radius-lg); margin: 0 var(--space-5); }
+.swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.swot-card { background: var(--surface); border-radius: var(--radius-md); padding: var(--space-5); border-left: 5px solid var(--sage-500); }
+.swot-s { border-color: #4E7C55; } .swot-w { border-color: #C48A2E; } .swot-o { border-color: #375534; } .swot-t { border-color: #B3452D; }
+.swot-card h3 { font-size: 1rem; margin-bottom: 10px; }
+.swot-card ul { list-style: none; }
+.swot-card li { font-size: 0.88rem; color: var(--text-muted); padding: 5px 0; }
+.swot-card li::before { content: "• "; color: var(--sage-500); }
+
+.fourp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+.fourp-card { padding: var(--space-5); text-align: center; }
+.fourp-card h3 { margin-bottom: 8px; color: var(--forest-700); }
+.fourp-card p { font-size: 0.88rem; }
+
+@media (max-width: 900px) { .pestle-grid, .swot-grid, .fourp-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .pestle-grid, .swot-grid, .fourp-grid { grid-template-columns: 1fr; } }
