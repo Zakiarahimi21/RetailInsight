@@ -26,6 +26,12 @@
     <button class="nav-toggle" data-nav-toggle aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
+    <!-- Add inside navbar-actions in templates/includes/navbar.html -->
+<div class="lang-toggle">
+  <button data-lang-toggle="en" class="is-active">EN</button>
+  <button data-lang-toggle="bn">বাং</button>
+</div>
+<script src="{{ url_for('static', filename='js/i18n.js') }}"></script>
   </div>
 </nav>
 
