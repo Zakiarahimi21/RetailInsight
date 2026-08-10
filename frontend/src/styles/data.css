@@ -1,0 +1,232 @@
+.ri-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.ri-search-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ri-white);
+  border: 1.5px solid #e2ede8;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  width: 280px;
+}
+
+.ri-search-input input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.ri-tabs {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid #e2ede8;
+}
+
+.ri-tab {
+  padding: 0.7rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ri-text-muted);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.ri-tab.active {
+  color: var(--ri-primary);
+  border-bottom-color: var(--ri-primary);
+}
+
+.ri-table-wrap {
+  background: var(--ri-white);
+  border-radius: var(--ri-radius-lg);
+  box-shadow: var(--ri-shadow);
+  overflow: hidden;
+}
+
+.ri-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ri-table th {
+  text-align: left;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--ri-text-muted);
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid #eef4f1;
+}
+
+.ri-table td {
+  padding: 0.85rem 1.1rem;
+  font-size: 0.88rem;
+  border-bottom: 1px solid #f3f8f5;
+  vertical-align: middle;
+}
+
+.ri-table tr:last-child td {
+  border-bottom: none;
+}
+
+.ri-table-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ri-icon-btn {
+  border: none;
+  background: #f1f7f4;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ri-primary);
+}
+
+.ri-icon-btn.danger {
+  color: #b3261e;
+  background: #fdecea;
+}
+
+.ri-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.ri-badge-green { background: #e6f4ea; color: #1e4620; }
+.ri-badge-red { background: #fdecea; color: #b3261e; }
+.ri-badge-muted { background: #f1f7f4; color: var(--ri-text-muted); }
+
+.ri-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.85rem;
+  color: var(--ri-text-muted);
+}
+
+.ri-pagination-btns {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.ri-pagination-btns button {
+  border: 1px solid #e2ede8;
+  background: var(--ri-white);
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.ri-pagination-btns button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* --- Modal --- */
+.ri-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 31, 32, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.ri-modal {
+  background: var(--ri-white);
+  border-radius: var(--ri-radius-lg);
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.75rem;
+}
+
+.ri-modal h3 {
+  margin: 0 0 1.25rem;
+  font-size: 1.25rem;
+}
+
+.ri-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+/* --- Import Data page --- */
+.ri-dropzone {
+  border: 2px dashed var(--ri-soft-green);
+  border-radius: var(--ri-radius-lg);
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background: #f6fbf8;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.ri-dropzone.dragging {
+  border-color: var(--ri-primary);
+  background: #eef7f2;
+}
+
+.ri-dropzone i {
+  font-size: 2.2rem;
+  color: var(--ri-accent);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.ri-mapping-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+  margin: 1.25rem 0;
+}
+
+.ri-mapping-row label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.ri-mapping-row select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 1.5px solid #d9e6e0;
+  font-size: 0.88rem;
+  background: var(--ri-white);
+}
+
+.ri-preview-table-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}

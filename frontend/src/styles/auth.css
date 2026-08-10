@@ -1,0 +1,120 @@
+.ri-auth-screen {
+  display: flex;
+  min-height: 100vh;
+}
+
+.ri-auth-panel {
+  flex: 1;
+  background: linear-gradient(160deg, var(--ri-primary), var(--ri-dark));
+  color: var(--ri-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.ri-auth-panel-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 3rem;
+}
+
+.ri-auth-panel-logo img {
+  height: 34px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.ri-auth-panel h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+}
+
+.ri-auth-panel p {
+  color: var(--ri-soft-green);
+  font-size: 1rem;
+  max-width: 380px;
+  line-height: 1.5;
+}
+
+.ri-auth-illustration {
+  margin-top: 2.5rem;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--ri-radius-lg);
+  background: rgba(139, 192, 176, 0.12);
+  border: 1px solid rgba(139, 192, 176, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ri-auth-illustration i {
+  font-size: 4.5rem;
+  color: var(--ri-soft-green);
+}
+
+.ri-auth-form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--ri-white);
+}
+
+.ri-auth-form-box {
+  width: 100%;
+  max-width: 400px;
+}
+
+.ri-auth-form-box h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.ri-auth-form-box > p {
+  color: var(--ri-text-muted);
+  margin-bottom: 2rem;
+}
+
+.ri-auth-row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.ri-auth-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ri-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.ri-auth-footer-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--ri-text-muted);
+}
+
+.ri-auth-footer-link a {
+  color: var(--ri-accent);
+  font-weight: 600;
+}
+
+@media (max-width: 860px) {
+  .ri-auth-panel {
+    display: none;
+  }
+}

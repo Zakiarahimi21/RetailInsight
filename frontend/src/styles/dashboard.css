@@ -1,0 +1,251 @@
+.ri-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f9f6;
+}
+
+.ri-sidebar {
+  width: 250px;
+  background: var(--ri-primary);
+  color: var(--ri-white);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.ri-sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.5rem 1.4rem;
+}
+
+.ri-sidebar-logo img {
+  height: 26px;
+  filter: brightness(0) invert(1);
+}
+
+.ri-sidebar-logo span {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.ri-sidebar-nav {
+  flex: 1;
+  padding: 0.5rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.ri-sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.72);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.ri-sidebar-link i {
+  font-size: 1.05rem;
+  width: 20px;
+  text-align: center;
+}
+
+.ri-sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ri-white);
+}
+
+.ri-sidebar-link.active {
+  background: var(--ri-soft-green);
+  color: var(--ri-primary);
+  font-weight: 600;
+}
+
+.ri-sidebar-footer {
+  padding: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ri-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ri-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.75rem;
+  background: var(--ri-white);
+  border-bottom: 1px solid #e6efe9;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.ri-topbar-search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #f1f7f4;
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  width: 320px;
+  color: var(--ri-text-muted);
+}
+
+.ri-topbar-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.ri-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.ri-topbar-icon-btn {
+  position: relative;
+  border: none;
+  background: #f1f7f4;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ri-primary);
+  font-size: 1.05rem;
+}
+
+.ri-topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.ri-topbar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ri-soft-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--ri-primary);
+}
+
+.ri-topbar-user-meta {
+  line-height: 1.15;
+}
+
+.ri-topbar-user-meta strong {
+  display: block;
+  font-size: 0.88rem;
+}
+
+.ri-topbar-user-meta span {
+  font-size: 0.75rem;
+  color: var(--ri-text-muted);
+  text-transform: capitalize;
+}
+
+.ri-content {
+  padding: 1.75rem;
+  flex: 1;
+}
+
+.ri-page-header {
+  margin-bottom: 1.5rem;
+}
+
+.ri-page-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.ri-page-header p {
+  color: var(--ri-text-muted);
+  margin: 0;
+}
+
+.ri-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ri-kpi-card {
+  background: var(--ri-white);
+  border-radius: var(--ri-radius-lg);
+  box-shadow: var(--ri-shadow);
+  padding: 1.25rem;
+}
+
+.ri-kpi-card span.label {
+  font-size: 0.82rem;
+  color: var(--ri-text-muted);
+  font-weight: 600;
+}
+
+.ri-kpi-card .value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0.35rem 0;
+}
+
+.ri-kpi-card .change {
+  font-size: 0.78rem;
+  color: var(--ri-accent);
+  font-weight: 600;
+}
+
+.ri-empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--ri-text-muted);
+}
+
+.ri-empty-state i {
+  font-size: 2.2rem;
+  color: var(--ri-soft-green);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+@media (max-width: 1100px) {
+  .ri-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ri-topbar-search {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .ri-sidebar {
+    display: none;
+  }
+  .ri-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
