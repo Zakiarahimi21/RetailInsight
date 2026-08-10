@@ -1,0 +1,25 @@
+Flask==3.0.3
+Flask-SQLAlchemy==3.1.1
+Flask-Login==0.6.3
+Flask-Migrate==4.0.7
+Flask-Mail==0.10.0
+Flask-WTF==1.2.1
+Flask-Limiter==3.8.0
+Flask-Cors==4.0.1
+PyMySQL==1.1.1
+python-dotenv==1.0.1
+email-validator==2.2.0
+itsdangerous==2.2.0
+
+# Added in later stages (data import, analytics, forecasting, reports, AI) —
+# already listed here so one `pip install -r requirements.txt` covers the
+# whole project as we build it out.
+pandas==2.2.3
+numpy==1.26.4
+scikit-learn==1.5.2
+statsmodels==0.14.4
+prophet==1.1.6
+joblib==1.4.2
+openpyxl==3.1.5
+reportlab==4.2.5
+requests==2.32.3
