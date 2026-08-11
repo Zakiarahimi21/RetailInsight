@@ -445,6 +445,22 @@
   max-width: 720px;
 }
 
+.ri-page-hero.ri-page-hero-about {
+  background: transparent;
+  color: var(--ri-dark);
+  text-align: center;
+}
+
+.ri-page-hero.ri-page-hero-about h1,
+.ri-page-hero.ri-page-hero-about p {
+  color: var(--ri-dark);
+}
+
+.ri-page-hero.ri-page-hero-about p {
+  margin: 0 auto;
+  max-width: 720px;
+}
+
 .ri-page-hero h1 {
   font-size: 2.1rem;
   font-weight: 800;

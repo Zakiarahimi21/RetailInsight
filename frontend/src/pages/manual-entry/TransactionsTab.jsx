@@ -3,7 +3,7 @@ import Modal from "../../components/Modal";
 import Pagination from "../../components/Pagination";
 import { transactionsApi, productsApi, customersApi } from "../../api/resources";
 
-const emptyItem = { product_id: "", quantity: 1, unit_price: "" };
+const emptyItem = { product_id: "", product_sku: "", quantity: 1, unit_price: "" };
 
 export default function TransactionsTab() {
   const [data, setData] = useState({ items: [], page: 1, pages: 1, total: 0 });
@@ -15,6 +15,7 @@ export default function TransactionsTab() {
 
   const [invoiceNo, setInvoiceNo] = useState("");
   const [customerId, setCustomerId] = useState("");
+  const [customerName, setCustomerName] = useState("");
   const [txnDate, setTxnDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [items, setItems] = useState([{ ...emptyItem }]);
 
@@ -31,6 +32,7 @@ export default function TransactionsTab() {
   const openAdd = () => {
     setInvoiceNo("");
     setCustomerId("");
+    setCustomerName("");
     setTxnDate(new Date().toISOString().slice(0, 10));
     setItems([{ ...emptyItem }]);
     setError("");
@@ -42,8 +44,12 @@ export default function TransactionsTab() {
       const next = [...prev];
       next[idx] = { ...next[idx], [field]: value };
       if (field === "product_id") {
+        next[idx].product_sku = "";
         const product = products.find((p) => String(p.id) === String(value));
         if (product) next[idx].unit_price = product.unit_price;
+      }
+      if (field === "product_sku") {
+        next[idx].product_id = "";
       }
       return next;
     });
@@ -54,26 +60,32 @@ export default function TransactionsTab() {
 
   const save = async (e) => {
     e.preventDefault();
-    const validItems = items.filter((i) => i.product_id && i.quantity > 0);
+    const validItems = items.filter((i) => (i.product_id || i.product_sku) && i.quantity > 0);
     if (validItems.length === 0) {
       setError("Add at least one product line.");
       return;
     }
+
+    const parsedCustomerId = Number(customerId);
+    const payload = {
+      invoice_no: invoiceNo || undefined,
+      customer_id: customerId && !Number.isNaN(parsedCustomerId) ? parsedCustomerId : undefined,
+      customer_name: !customerId && customerName ? customerName : undefined,
+      transaction_date: `${txnDate}T00:00:00`,
+      items: validItems.map((i) => ({
+        product_id: i.product_id ? Number(i.product_id) : undefined,
+        product_sku: i.product_id ? undefined : i.product_sku || undefined,
+        quantity: Number(i.quantity),
+        unit_price: Number(i.unit_price),
+      })),
+    };
+
     try {
-      await transactionsApi.create({
-        invoice_no: invoiceNo || undefined,
-        customer_id: customerId || undefined,
-        transaction_date: `${txnDate}T00:00:00`,
-        items: validItems.map((i) => ({
-          product_id: Number(i.product_id),
-          quantity: Number(i.quantity),
-          unit_price: Number(i.unit_price),
-        })),
-      });
+      await transactionsApi.create(payload);
       setModalOpen(false);
       load(data.page);
     } catch (err) {
-      setError(err.response?.data?.errors?.items?.[0] || "Something went wrong.");
+      setError(err.response?.data?.errors?.items?.[0] || err.response?.data?.errors?.customer_id?.[0] || err.response?.data?.errors?.customer_name?.[0] || "Something went wrong.");
     }
   };
 
@@ -134,12 +146,36 @@ export default function TransactionsTab() {
               <label>Customer (optional)</label>
               <select
                 value={customerId}
-                onChange={(e) => setCustomerId(e.target.value)}
+                onChange={(e) => {
+                  setCustomerId(e.target.value);
+                  setCustomerName("");
+                }}
                 style={{ width: "100%", padding: "0.75rem 1rem", borderRadius: 14, border: "1.5px solid #d9e6e0" }}
               >
                 <option value="">— Walk-in / none —</option>
                 {customers.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
+              <input
+                placeholder="Customer ID"
+                value={customerId}
+                onChange={(e) => {
+                  setCustomerId(e.target.value);
+                  setCustomerName("");
+                }}
+                style={{ width: "100%", marginTop: "0.75rem", padding: "0.75rem 1rem", borderRadius: 14, border: "1.5px solid #d9e6e0" }}
+              />
+              <input
+                placeholder="Customer Name"
+                value={customerName}
+                onChange={(e) => {
+                  setCustomerName(e.target.value);
+                  setCustomerId("");
+                }}
+                style={{ width: "100%", marginTop: "0.75rem", padding: "0.75rem 1rem", borderRadius: 14, border: "1.5px solid #d9e6e0" }}
+              />
+              <div style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "var(--ri-text-muted)" }}>
+                Enter an existing customer from the list, a customer ID, or a customer name. Customer ID takes precedence if both are provided.
+              </div>
             </div>
             <div className="ri-field">
               <label>Date</label>
@@ -148,24 +184,36 @@ export default function TransactionsTab() {
 
             <label style={{ fontSize: "0.85rem", fontWeight: 600 }}>Line Items</label>
             {items.map((item, idx) => (
-              <div key={idx} style={{ display: "flex", gap: "0.5rem", marginTop: "0.5rem", alignItems: "center" }}>
-                <select
-                  value={item.product_id}
-                  onChange={(e) => updateItem(idx, "product_id", e.target.value)}
-                  style={{ flex: 2, padding: "0.6rem", borderRadius: 10, border: "1.5px solid #d9e6e0" }}
-                >
-                  <option value="">Select product</option>
-                  {products.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
-                </select>
+              <div key={idx} style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: "0.5rem", marginTop: "0.5rem", alignItems: "center" }}>
+                <div style={{ display: "grid", gap: "0.5rem" }}>
+                  <select
+                    value={item.product_id}
+                    onChange={(e) => updateItem(idx, "product_id", e.target.value)}
+                    style={{ width: "100%", padding: "0.6rem", borderRadius: 10, border: "1.5px solid #d9e6e0" }}
+                  >
+                    <option value="">Select product</option>
+                    {products.map((p) => (
+                      <option key={p.id} value={p.id}>
+                        {p.name}{p.sku ? ` (${p.sku})` : ""}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    placeholder="Or enter ID / SKU"
+                    value={item.product_sku}
+                    onChange={(e) => updateItem(idx, "product_sku", e.target.value)}
+                    style={{ width: "100%", padding: "0.6rem", borderRadius: 10, border: "1.5px solid #d9e6e0" }}
+                  />
+                </div>
                 <input
                   type="number" min="1" placeholder="Qty" value={item.quantity}
                   onChange={(e) => updateItem(idx, "quantity", e.target.value)}
-                  style={{ width: "70px", padding: "0.6rem", borderRadius: 10, border: "1.5px solid #d9e6e0" }}
+                  style={{ width: "100%", padding: "0.6rem", borderRadius: 10, border: "1.5px solid #d9e6e0" }}
                 />
                 <input
                   type="number" step="0.01" placeholder="Price" value={item.unit_price}
                   onChange={(e) => updateItem(idx, "unit_price", e.target.value)}
-                  style={{ width: "90px", padding: "0.6rem", borderRadius: 10, border: "1.5px solid #d9e6e0" }}
+                  style={{ width: "100%", padding: "0.6rem", borderRadius: 10, border: "1.5px solid #d9e6e0" }}
                 />
                 {items.length > 1 && (
                   <button type="button" className="ri-icon-btn danger" onClick={() => removeItemRow(idx)}>

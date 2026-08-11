@@ -29,7 +29,7 @@ export default function About() {
     <div>
       <PublicNav />
 
-      <section className="ri-page-hero">
+      <section className="ri-page-hero ri-page-hero-about">
         <h1>About RetailInsight</h1>
         <p>Empowering Retailers with Data-Driven Decisions</p>
       </section>

@@ -40,8 +40,18 @@ def get_transaction(transaction_id):
 
 
 def _resolve_customer(data):
-    if data.get("customer_id"):
-        return Customer.query.filter_by(id=data["customer_id"], user_id=current_user.id).first()
+    customer_id = data.get("customer_id")
+    if customer_id is not None and customer_id != "":
+        try:
+            customer_id = int(customer_id)
+        except (TypeError, ValueError):
+            return jsonify({"errors": {"customer_id": ["Customer ID must be a number."]}}), 400
+
+        customer = Customer.query.filter_by(id=customer_id, user_id=current_user.id).first()
+        if not customer:
+            return jsonify({"errors": {"customer_id": ["Customer not found."]}}), 400
+        return customer
+
     if data.get("customer_name"):
         customer = Customer(
             user_id=current_user.id,
@@ -64,7 +74,10 @@ def create_transaction():
     if not items_data:
         return jsonify({"errors": {"items": ["At least one line item is required."]}}), 400
 
-    customer = _resolve_customer(data)
+    customer_result = _resolve_customer(data)
+    if isinstance(customer_result, tuple):
+        return customer_result
+    customer = customer_result
 
     try:
         txn_date = datetime.fromisoformat(data.get("transaction_date")) if data.get("transaction_date") else datetime.utcnow()
@@ -83,10 +96,26 @@ def create_transaction():
     db.session.flush()
 
     for item in items_data:
-        product = Product.query.filter_by(id=item.get("product_id"), user_id=current_user.id).first()
+        product = None
+        product_id_value = item.get("product_id")
+        product_sku_value = item.get("product_sku")
+
+        if product_id_value not in (None, ""):
+            try:
+                product_id_value = int(product_id_value)
+                product = Product.query.filter_by(id=product_id_value, user_id=current_user.id).first()
+            except (TypeError, ValueError):
+                product = None
+
+        if not product and product_sku_value:
+            product = Product.query.filter_by(sku=product_sku_value, user_id=current_user.id).first()
+            if not product and str(product_sku_value).isdigit():
+                product = Product.query.filter_by(id=int(product_sku_value), user_id=current_user.id).first()
+
         if not product:
             db.session.rollback()
-            return jsonify({"errors": {"items": [f"Product {item.get('product_id')} not found."]}}), 400
+            identifier = product_id_value if product_id_value not in (None, "") else product_sku_value or "unknown"
+            return jsonify({"errors": {"items": [f"Product {identifier} not found."]}}), 400
 
         quantity = int(item.get("quantity", 1))
         unit_price = item.get("unit_price", product.unit_price)
